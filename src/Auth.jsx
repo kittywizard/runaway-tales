@@ -26,10 +26,11 @@ export default function Auth() {
     }
     return (
         <div>
-            Sign in
-            {loading ? ( 'Sending a link.. ')
+            <h3>Sign in</h3>
+            {loading ? 
+            'Please wait blah blah..'
             :
-            (
+            <>
                 <form onSubmit={handleLogin}>
                     <input 
                         id="email"
@@ -39,10 +40,12 @@ export default function Auth() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <button>
-                        Send link
+                        Login
                     </button>
                 </form>
-            )}
+                <button>sign up?</button>
+                </>
+            }
         </div>
     )
 }
