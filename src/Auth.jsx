@@ -25,25 +25,25 @@ export default function Auth() {
         }
     }
     return (
-        <div>
-            <h3>Sign in</h3>
+        <div className='container mx-auto flex-col justify-center bg-gray-green-light p-2 max-w-xs'>
+            <h3 className='font-bold text-2xl text-dark-green p-2'>Sign in</h3>
             {loading ? 
             'Please wait blah blah..'
             :
             <>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleLogin} className="m-2">
                     <input 
                         id="email"
-                        className='inputField'
+                        className='inputField bg-dark-green text-white rounded-md m-2 p-2'
                         placeholder='email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <button>
+                    <button className='bg-dark-green rounded-md py-2 px-3 text-white font-bold'>
                         Login
                     </button>
                 </form>
-                <button>sign up?</button>
+                <button className='bg-dark-green rounded-md py-2 px-3 text-white font-bold'>Sign up</button>
                 </>
             }
         </div>
