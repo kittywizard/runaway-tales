@@ -43,7 +43,7 @@ export default function Auth() {
                         Login
                     </button>
                 </form>
-                <button className='bg-dark-green rounded-md py-2 px-3 text-white font-bold'>Sign up</button>
+                <button className='font-bold text-dark-green hover:text-black'>Sign up</button>
                 </>
             }
         </div>
