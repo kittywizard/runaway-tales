@@ -13,18 +13,18 @@ export default function Auth() {
 
         try {
             setLoading(true);
-            //grab username and password from form
             const {data, error} = await supabase.auth.signInWithPassword({
-                email: '',
-                password: ''
-                //replace with variables
+                email,
+                password
             })
-
         } catch (error) {  
             alert(error.message);
             console.log(error);
         } finally {
             setLoading(false);
+            console.log('login successful');
+            setSession(data.session)
+            setUser(data.user);
         }
     }
     
@@ -45,6 +45,7 @@ export default function Auth() {
         } else {
             setUser(data.user)
             console.log('user created successfully')
+            
         }
     }
 
