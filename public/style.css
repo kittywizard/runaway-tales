@@ -589,16 +589,12 @@ video {
   display: none;
 }
 
-.max-h-16 {
-  max-height: 4rem;
+.max-w-xs {
+  max-width: 20rem;
 }
 
 .max-w-2xl {
   max-width: 42rem;
-}
-
-.max-w-xs {
-  max-width: 20rem;
 }
 
 .cursor-pointer {
@@ -638,10 +634,6 @@ video {
   border-bottom-left-radius: 0.5rem;
 }
 
-.border-b-2 {
-  border-bottom-width: 2px;
-}
-
 .bg-gray-green-light {
   background-color: rgba(228, 248, 229, 1);
 }
@@ -667,28 +659,19 @@ video {
   padding: 1.5rem;
 }
 
-.p-3 {
-  padding: 0.75rem;
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .text-center {
@@ -699,22 +682,18 @@ video {
   text-align: right;
 }
 
-.align-middle {
-  vertical-align: middle;
-}
-
 .font-serif {
   font-family: Viaoda Libre, serif;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
 }
 
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .text-3xl {
@@ -746,13 +725,13 @@ video {
   color: rgb(106 141 110 / var(--tw-text-opacity));
 }
 
-.text-gray {
-  color: rgba(50,50,50,0.8);
-}
-
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray {
+  color: rgba(50,50,50,0.8);
 }
 
 .text-gray-dark {
@@ -790,10 +769,6 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.hover\:border-b-2:hover {
-  border-bottom-width: 2px;
-}
-
 .hover\:border-b-black:hover {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -807,6 +782,11 @@ video {
   background-color: rgba(135,181,127,1);
 }
 
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .hover\:text-gray-dark:hover {
   --tw-text-opacity: 1;
   color: rgb(39 52 68 / var(--tw-text-opacity));
@@ -815,11 +795,6 @@ video {
 .hover\:text-dark-green:hover {
   --tw-text-opacity: 1;
   color: rgb(106 141 110 / var(--tw-text-opacity));
-}
-
-.hover\:text-black:hover {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-black\/50:hover {
