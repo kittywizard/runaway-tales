@@ -31,7 +31,21 @@ export default function Auth() {
     const handleSignUp = async (e) => {
         e.preventDefault();
 
-        console.log('do the sign up thing');
+        const {data, error} = await supabase.auth.signUp({
+            email,
+            password
+        },
+        {
+            data: {
+                username
+            }
+        })
+        if(error) {
+            alert(error.message);
+        } else {
+            setUser(data.user)
+            console.log('user created successfully')
+        }
     }
 
     return (
@@ -106,6 +120,8 @@ export default function Auth() {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
+
+                        <button>Sign up!</button>
                     </form>
                 </>
 
