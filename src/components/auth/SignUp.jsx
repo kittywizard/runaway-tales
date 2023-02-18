@@ -5,7 +5,7 @@ const SignUp = () => {
     return (
         <div className='container mx-auto flex-col justify-center bg-gray-green-light p-2'>
         <h3 className='font-bold text-2xl text-dark-green p-2 text-center'>Sign Up</h3>
-        <>
+        {/* <>
             <form onSubmit={handleSignUp} className="m-2 flex-col justify-center">
                 <div>
                     <label htmlFor='username'>Username:</label>
@@ -45,7 +45,7 @@ const SignUp = () => {
 
                 <button>Sign up!</button>
             </form>
-        </>
+        </> */}
 
     </div>
     )

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React from "react"; //go away typescript
 import {nanoid } from "nanoid";
 
 import Button from "./components/Button";
@@ -13,6 +14,7 @@ import { flavorData } from "./data/flavors";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Main() {
     const [dropdownState, setDropdownState] = useState({
