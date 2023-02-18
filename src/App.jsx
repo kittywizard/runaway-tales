@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./Main";
 import { AuthProvider } from "./AuthContext";
+import Dashboard from "./components/auth/Dashboard";
 
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
     <AuthProvider>
       <div className="container mx-auto">
         <Header/>
-        <Main />
+        <Dashboard />
+        {/* <Main /> */}
         <Footer />
       </div>
     </AuthProvider>
