@@ -586,20 +586,8 @@ video {
   margin-bottom: 1rem;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
 .mb-3 {
   margin-bottom: 0.75rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
-.mb-8 {
-  margin-bottom: 2rem;
 }
 
 .mt-3 {
@@ -608,6 +596,10 @@ video {
 
 .flex {
   display: flex;
+}
+
+.table {
+  display: table;
 }
 
 .hidden {
@@ -672,14 +664,6 @@ video {
   background-color: rgb(50 50 50 / 0.3);
 }
 
-.bg-green {
-  background-color: rgba(135,181,127,1);
-}
-
-.bg-gray {
-  background-color: rgba(50,50,50,0.8);
-}
-
 .p-2 {
   padding: 0.5rem;
 }
@@ -716,9 +700,14 @@ video {
   padding-right: 0.5rem;
 }
 
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .text-center {

@@ -5,7 +5,7 @@ import {faGithub, faDiscord} from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
     return (
-        <ul className="hidden md:flex items-center justify-between">
+        <ul className="hidden md:flex items-center justify-between mt-3">
         <li className='p-4'>
             <a href="http://github.com/kittywizard/runaway-tales"
                 target="_blank"
