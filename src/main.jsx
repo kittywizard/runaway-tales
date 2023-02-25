@@ -4,8 +4,8 @@ import {nanoid } from "nanoid";
 
 import Button from "./components/Button";
 import Prompt from "./components/Prompt";
-import Dropdown from "./components/Dropdown";
-import Intro from "./Intro";
+import Dropdown from "./components/form/Dropdown";
+import Intro from "./components/Intro";
 
 import useGenerator from "./hooks/useGenerator"
 import useTopping from "./hooks/useTopping";
