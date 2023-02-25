@@ -10,8 +10,8 @@ function App() {
     <AuthProvider>
       <div className="container mx-auto">
         <Header/>
-        <Dashboard />
-        {/* <Main /> */}
+        {/* <Dashboard /> */}
+        <Main />
         <Footer />
       </div>
     </AuthProvider>
@@ -20,3 +20,5 @@ function App() {
 }
 
 export default App;
+
+// not used anymore?

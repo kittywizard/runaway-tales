@@ -586,20 +586,16 @@ video {
   margin-bottom: 1rem;
 }
 
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
 }
 
-.flex {
-  display: flex;
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 
-.table {
-  display: table;
+.flex {
+  display: flex;
 }
 
 .hidden {
@@ -693,21 +689,6 @@ video {
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .text-center {
@@ -821,11 +802,6 @@ video {
 .hover\:text-gray-dark:hover {
   --tw-text-opacity: 1;
   color: rgb(39 52 68 / var(--tw-text-opacity));
-}
-
-.hover\:text-dark-green:hover {
-  --tw-text-opacity: 1;
-  color: rgb(106 141 110 / var(--tw-text-opacity));
 }
 
 .hover\:text-black:hover {
