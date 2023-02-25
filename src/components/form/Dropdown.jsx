@@ -1,7 +1,7 @@
 import Option from "./Option";
 import { nanoid } from "nanoid";
-import { flavorData } from "../data/flavors";
-import useDropdown from "../hooks/useDropdown";
+//import { flavorData } from "../data/flavors";
+import useDropdown from "../../hooks/useDropdown";
 
 
 export default function Dropdown(props){

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Option from "../components/Option";
+import Option from "../components/form/Option";
 import { nanoid } from "nanoid";
 
 
