@@ -52,6 +52,7 @@ export default function Main() {
     const flavorSet = flavorData.map(flavor => flavor.flavor);
     
     return (
+        <>
         <main className="container mx-auto flex-col justify-center">
             <Intro />
             <div className="container flex flex-row justify-between">  
@@ -115,5 +116,6 @@ export default function Main() {
             </section>
 
         </main>
+        </>
     )
 }

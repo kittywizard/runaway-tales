@@ -14,7 +14,7 @@ const Register = () => {
     const register = (email, password, username) =>
     supabase.auth.signUp({email: email, password: password, options: {data: {username: username}}});
 
-  const handleSubmit = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     if (
       !passwordRef.current?.value ||
@@ -86,8 +86,32 @@ const Register = () => {
                     />
                 </div>
 
+                
+                <div>
+                    <label htmlFor='password'>Confirm Password:</label>
+                    <input 
+                        id="confirm_password"
+                        className="inputField bg-dark-green text-white rounded-md m-2 p-2"
+                        placeholder='password'
+                        type="password"
+                        ref={confirmPasswordRef}
+                    />
+                </div>
+
+
                 <button>Sign up!</button>
             </form>
+            {errorMsg && (
+              <div
+                onClose={() => setErrorMsg("")}>
+                {errorMsg}
+              </div>
+            )}
+            {msg && (
+              <div  onClose={() => setMsg("")}>
+                {msg}
+              </div>
+            )}
         </>
 
     </div>
