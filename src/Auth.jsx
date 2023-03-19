@@ -1,6 +1,6 @@
 import { useState, createContext } from 'react';
 import { supabase } from './supabaseClient';
-import SignUp from "./components/auth/SignUp";
+import SignUp from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
 export default function Auth() {
