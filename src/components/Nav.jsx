@@ -4,8 +4,17 @@ import { useAuth } from "../AuthContext";
 
 
 export default function Nav() {
-   const {user} = useAuth();
+   const {user, signOut} = useAuth();
    const username = user.user_metadata.username;
+
+   const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      const { error } = await signOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
     return (
         <ul className="hidden md:flex items-center justify-between">
@@ -13,7 +22,7 @@ export default function Nav() {
                 <Link to="/dashboard">{username}</Link>
             </li>
             <li className='p-3'>
-                <Link to="/logout">Logout</Link>
+                <a onClick={handleLogout}>Logout</a>
             </li>
         </ul>
     )
