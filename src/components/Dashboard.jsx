@@ -1,14 +1,16 @@
 import { Outlet, Link } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 export default function Dashboard() {
-    //context user info
+    const {user} = useAuth();
+    const username = user.user_metadata.username;
 
     return (
         // make this grid instead
         <section className="container mx-auto flex flex-row justify-between">
             <div>
                <h1 className="text-dark-green text-2xl font-bold font-serif py-2 flex flex-col">
-                     Username
+                     {username}
                 </h1>
                 <div className="container mx-auto flex-col justify-center">
                     <Link to="./settings" className="text-dark-green font-bold m-2">

@@ -22,7 +22,7 @@ export default function Nav() {
                 <Link to="/dashboard">{username}</Link>
             </li>
             <li className='p-3'>
-                <a onClick={handleLogout}>Logout</a>
+                <a className="cursor-pointer p-3 font-bold hover:text-gray-dark" onClick={handleLogout}>Logout</a>
             </li>
         </ul>
     )
