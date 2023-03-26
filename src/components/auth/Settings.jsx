@@ -3,12 +3,15 @@ import { useAuth } from "../../AuthContext";
 import { Link } from "react-router-dom";
 
 export default function Settings() {
-    const {passwordReset} = useAuth();
+    const {passwordReset, updatePassword} = useAuth();
     const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+    const confirmPasswordRef = useRef(null);
+
     const [loading, setLoading] = useState(false);
     const [msg, setMsg] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleResetSubmit = async (e) => {
         e.preventDefault();
         try {
           setLoading(true);
@@ -21,14 +24,50 @@ export default function Settings() {
         }
         setLoading(false);
       };
+
+      const handleUpdateSubmit = async (e) => {
+        e.preventDefault();
+        if (!passwordRef.current?.value || !confirmPasswordRef.current?.value) {
+          setErrorMsg("Please fill all the fields");
+          return;
+        }
+        if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+          setErrorMsg("Passwords doesn't match. Try again");
+          return;
+        }
+        try {
+          setErrorMsg("");
+          setLoading(true);
+          const { data, error } = await updatePassword(passwordRef.current.value);
+          if (!error) {
+            navigate("/");
+          }
+        } catch (error) {
+          setErrorMsg("Error in Updating Password. Please try again");
+        }
+        setLoading(false);
+      };
+    
     return (
         <section>
-            <h2>Reset Password</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email Address:</label>
-                <input type="email" ref={emailRef} required/>
-                <button type="submit">Reset</button>
-            </form>
+            <div>
+                <h2 className="font-bold text-2xl text-dark-green p-2 text-center">Reset Password</h2>
+                <form onSubmit={handleResetSubmit}>
+                    <label htmlFor="email">Email Address:</label>
+                    <input className='inputField bg-dark-green text-white rounded-md m-2 p-2' type="email" ref={emailRef} required/>
+                    <button type="submit" className='bg-dark-green rounded-md py-2 px-3 text-white font-bold'>Reset</button>
+                </form>
+            </div>
+            <div>
+                <h2 className="font-bold text-2xl text-dark-green p-2 text-center">Update Password</h2>
+                <form onSubmit={handleUpdateSubmit}>
+                    <label htmlFor="password">New Password:</label>
+                    <input  className='inputField bg-dark-green text-white rounded-md m-2 p-2' type="password" ref={passwordRef} required/>
+                    <label htmlFor="confirmPassword">Confirm Password:</label>
+                    <input  className='inputField bg-dark-green text-white rounded-md m-2 p-2' type="password" ref={confirmPasswordRef} required />
+                    <button type="submit" className='bg-dark-green rounded-md py-2 px-3 text-white font-bold'>Reset</button>
+                </form>
+            </div>
         </section>
     )
 }
