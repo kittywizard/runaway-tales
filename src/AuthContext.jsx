@@ -10,6 +10,12 @@ const login = (email, password) =>
 
 const signOut = () => supabase.auth.signOut();
 
+const passwordReset = () => {
+  supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: "http://localhost:5173/update-password"
+  });
+}
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [auth, setAuth] = useState(false);
@@ -30,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, signOut }}>
+    <AuthContext.Provider value={{ user, login, signOut, passwordReset }}>
       {children}
     </AuthContext.Provider>
   );
