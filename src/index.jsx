@@ -8,6 +8,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/Dashboard';
 import Settings from './components/auth/Settings';
+import PasswordReset from "./components/auth/PasswordReset";
 import Main from "./Main";
 
 
@@ -20,6 +21,7 @@ root.render(
               <Route path="/" element={<Main/>}/>
               <Route path="/dashboard" element={<Dashboard/>}>
                 <Route path="/dashboard/settings" element={<Settings />}/>
+                <Route path="/dashboard/settings/update-password" element={<PasswordReset/>} />
               </Route>
             </Route>
               <Route path="/login" element={<Login/>}/>

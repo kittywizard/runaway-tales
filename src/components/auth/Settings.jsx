@@ -32,7 +32,7 @@ export default function Settings() {
           return;
         }
         if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-          setErrorMsg("Passwords doesn't match. Try again");
+          setErrorMsg("Passwords don't match. Try again");
           return;
         }
         try {
@@ -54,7 +54,7 @@ export default function Settings() {
                 <h2 className="font-bold text-2xl text-dark-green p-2 text-center">Reset Password</h2>
                 <form onSubmit={handleResetSubmit}>
                     <label htmlFor="email">Email Address:</label>
-                    <input className='inputField bg-dark-green text-white rounded-md m-2 p-2' type="email" ref={emailRef} required/>
+                    <input className='inputField bg-dark-green text-white rounded-md m-2 p-2' type="email" ref={emailRef} required />
                     <button type="submit" className='bg-dark-green rounded-md py-2 px-3 text-white font-bold'>Reset</button>
                 </form>
             </div>
