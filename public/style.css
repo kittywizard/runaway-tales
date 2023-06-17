@@ -676,6 +676,10 @@ video {
   background-color: rgb(50 50 50 / 0.3);
 }
 
+.bg-green {
+  background-color: rgba(135,181,127,1);
+}
+
 .p-2 {
   padding: 0.5rem;
 }

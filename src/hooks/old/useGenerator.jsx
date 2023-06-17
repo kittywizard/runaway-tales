@@ -1,13 +1,10 @@
 import {useState, useEffect} from "react";
 import { flavorData } from "../data/flavors";
-import { supabase } from "../supabaseClient";
 
 
 function useGenerator(props) {
 
     const [flavors, setFlavors] = useState(flavorData);
-
-    //const [flavors, setFlavors] = useState([]);
     const [chosenPrompts, setChosenPrompts] = useState([]);
 
 
@@ -16,7 +13,7 @@ function useGenerator(props) {
         let promptObj = {};
 
         //if user hasn't selected anything from the dropdowns, grab from all flavors
-       
+
         if(props.theme === "" && props.flavor === "") {
             const allNumbers = generateNumbers(flavors);
             promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);

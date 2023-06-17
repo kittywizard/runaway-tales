@@ -15,6 +15,8 @@ import { flavorData } from "./data/flavors";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
+import { supabase } from "./supabaseClient";
+
 
 export default function Main() {
     const [dropdownState, setDropdownState] = useState({
@@ -24,9 +26,6 @@ export default function Main() {
     const [displayTopping, setDisplayTopping] = useState(false);
     const [toggleTopping, setToggleTopping] = useState(true);
     
-    //is this needed?
-    const [dropdownDisplay, setDropdownDisplay] = useState([true, true]); //theme, flavor
-
     const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
     const {getTopping, newTopping} = useTopping();
 
@@ -36,6 +35,24 @@ export default function Main() {
             key={nanoid()}
         />
     ));
+
+    const [testState, setTestState] = useState([]);
+    
+    async function dataGrab() {
+        const { data: prompts, error } = await supabase
+         .from('prompts')
+         .select();
+
+         setTestState(prompts);
+     }
+
+    useEffect(() => {
+        dataGrab()
+        .catch(console.error); 
+
+        console.log(testState)
+        }, []);
+
 
     //need to check if promptMap gets updated and then display the topping stuff
     useEffect(() => {
