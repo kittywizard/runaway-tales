@@ -42,16 +42,15 @@ export default function Main() {
         const { data: prompts, error } = await supabase
          .from('prompts')
          .select();
-
          setTestState(prompts);
      }
 
     useEffect(() => {
         dataGrab()
         .catch(console.error); 
-
-        console.log(testState)
         }, []);
+
+        console.log(testState);
 
 
     //need to check if promptMap gets updated and then display the topping stuff
