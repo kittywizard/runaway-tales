@@ -17,7 +17,6 @@ import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { supabase } from "./supabaseClient";
 
-
 export default function Main() {
     const [dropdownState, setDropdownState] = useState({
         theme: "",
@@ -25,8 +24,30 @@ export default function Main() {
     });
     const [displayTopping, setDisplayTopping] = useState(false);
     const [toggleTopping, setToggleTopping] = useState(true);
+    const [flavors, setFlavors] = useState([]);
+ 
+    async function dataGrab() {
+        const { data: prompts, error } = await supabase
+         .from('prompts')
+         .select();
+         setFlavors(prompts);
+     }
+
+    useEffect(() => {
+            dataGrab()
+            .catch(console.error); 
+        
+    }, []);
     
-    const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
+    //console.log(flavors);
+
+    /*
+    flavors state needs to be passed down to useGenerator somehow. 
+    then it should work
+
+    */
+    
+    const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavors);
     const {getTopping, newTopping} = useTopping();
 
     const promptMap = chosenPrompts.map(prompt => (
@@ -35,24 +56,7 @@ export default function Main() {
             key={nanoid()}
         />
     ));
-
-    const [testState, setTestState] = useState([]);
-    
-    async function dataGrab() {
-        const { data: prompts, error } = await supabase
-         .from('prompts')
-         .select();
-         setTestState(prompts);
-     }
-
-    useEffect(() => {
-        dataGrab()
-        .catch(console.error); 
-        }, []);
-
-        console.log(testState);
-
-
+        
     //need to check if promptMap gets updated and then display the topping stuff
     useEffect(() => {
         promptMap.length > 0 && setDisplayTopping(true)

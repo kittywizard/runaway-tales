@@ -1,15 +1,14 @@
 import {useState, useEffect} from "react";
 import { flavorData } from "../data/flavors";
+
 import { supabase } from "../supabaseClient";
 
+function useGenerator({dropdownState, flavors}) {
 
-function useGenerator(props) {
+    //const [flavors, setFlavors] = useState(flavorData);
 
-    const [flavors, setFlavors] = useState(flavorData);
-
-    //const [flavors, setFlavors] = useState([]);
     const [chosenPrompts, setChosenPrompts] = useState([]);
-
+    console.log(flavors[0]);
 
     function getPrompt() {
 
@@ -17,18 +16,19 @@ function useGenerator(props) {
 
         //if user hasn't selected anything from the dropdowns, grab from all flavors
        
-        if(props.theme === "" && props.flavor === "") {
+        if(dropdownState.theme === "" && dropdownState.flavor === "") {
+            console.log(`logging all numbers.. ${flavors.length}`);
             const allNumbers = generateNumbers(flavors);
-            promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);
+            promptObj = setPromptObj(allNumbers[0], allNumbers[1], dropdownState.flavors);
 
-        } else if(props.flavor !== "") {
-            const flavorPrompts = flavors.filter(flavor => flavor.flavor === props.flavor);
+        } 
+        else if(dropdownState.flavor !== "") {
+            const flavorPrompts = flavors.filter(flavor => flavor.flavor === dropdownState.flavor);
             const flavNum = generateNumbers(flavorPrompts);
             promptObj = setPromptObj(flavNum[0], flavNum[1], flavorPrompts);
         }
-        
-        else if(props.theme !== "") {
-            const themePrompts = flavors.filter(flavor => flavor.theme === props.theme);
+        else if(dropdownState.theme !== "") {
+            const themePrompts = flavors.filter(flavor => flavor.theme === dropdownState.theme);
             const numbers = generateNumbers(themePrompts);
             promptObj = setPromptObj(numbers[0], numbers[1], themePrompts);
         }
@@ -63,7 +63,7 @@ function useGenerator(props) {
         }
     }
 
-    return {getPrompt, flavors, chosenPrompts, setChosenPrompts}
+    return {getPrompt, chosenPrompts, setChosenPrompts}
 }
 
 export default useGenerator;
