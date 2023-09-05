@@ -8,7 +8,7 @@ function useGenerator({dropdownState, flavors}) {
     //const [flavors, setFlavors] = useState(flavorData);
 
     const [chosenPrompts, setChosenPrompts] = useState([]);
-    console.log(flavors[0]);
+    console.log(flavors);
 
     function getPrompt() {
 

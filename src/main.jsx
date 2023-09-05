@@ -38,15 +38,8 @@ export default function Main() {
             .catch(console.error); 
         
     }, []);
-    
-    //console.log(flavors);
-
-    /*
-    flavors state needs to be passed down to useGenerator somehow. 
-    then it should work
-
-    */
-    
+        
+    //need to wait for the above to happen first?
     const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavors);
     const {getTopping, newTopping} = useTopping();
 

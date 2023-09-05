@@ -672,12 +672,12 @@ video {
   background-color: rgb(106 141 110 / var(--tw-bg-opacity));
 }
 
-.bg-gray\/30 {
-  background-color: rgb(50 50 50 / 0.3);
-}
-
 .bg-green {
   background-color: rgba(135,181,127,1);
+}
+
+.bg-gray\/30 {
+  background-color: rgb(50 50 50 / 0.3);
 }
 
 .p-2 {
