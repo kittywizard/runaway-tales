@@ -43,8 +43,6 @@ export default function Main() {
     const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavors);
     const {getTopping, newTopping} = useTopping();
 
-    console.log(chosenPrompts)
-
     const promptMap = chosenPrompts.map(prompt => (
         <Prompt 
             data={prompt}
