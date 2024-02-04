@@ -7,10 +7,10 @@ import Prompt from "./components/Prompt";
 import Dropdown from "./components/form/Dropdown";
 import Intro from "./components/Intro";
 
-import useGenerator from "./hooks/useGenerator"
+import useGenerator from "./hooks/useGenerator";
 import useTopping from "./hooks/useTopping";
 
-import { flavorData } from "./data/flavors";
+import { flavorData } from "./data/flavors"; //change to use database at some point 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
@@ -42,6 +42,8 @@ export default function Main() {
     //need to wait for the above to happen first?
     const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavors);
     const {getTopping, newTopping} = useTopping();
+
+    console.log(chosenPrompts)
 
     const promptMap = chosenPrompts.map(prompt => (
         <Prompt 

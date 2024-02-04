@@ -1,18 +1,19 @@
 import {useState, useEffect} from "react";
-import { flavorData } from "../data/flavors";
-
-import { supabase } from "../supabaseClient";
 
 function useGenerator({dropdownState, flavors}) {
 
     //const [flavors, setFlavors] = useState(flavorData);
 
     const [chosenPrompts, setChosenPrompts] = useState([]);
-    console.log(flavors);
+    console.log(`flavors: ${flavors}`);
+    console.log(`dropdownstate: ${dropdownState}`);
 
-    function getPrompt() {
+
+    function getPrompt(dropdownState, flavors) {
 
         let promptObj = {};
+        console.log('get prompt running..');
+        console.log(dropdownState.theme);
 
         //if user hasn't selected anything from the dropdowns, grab from all flavors
        
