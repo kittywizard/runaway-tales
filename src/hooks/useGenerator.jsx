@@ -5,9 +5,6 @@ function useGenerator({dropdownState, flavors}) {
     //const [flavors, setFlavors] = useState(flavorData);
 
     const [chosenPrompts, setChosenPrompts] = useState([]);
-    console.log(`flavors: ${flavors}`);
-    console.log(`dropdownstate: ${dropdownState}`);
-
 
     function getPrompt(dropdownState, flavors) {
 

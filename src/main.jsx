@@ -24,9 +24,13 @@ export default function Main() {
     });
     const [displayTopping, setDisplayTopping] = useState(false);
     const [toggleTopping, setToggleTopping] = useState(true);
+
+    //where is this being called?
     const [flavors, setFlavors] = useState([]);
  
+    //setting flavors from the database
     async function dataGrab() {
+        console.log('datagrab running?');
         const { data: prompts, error } = await supabase
          .from('prompts')
          .select();
