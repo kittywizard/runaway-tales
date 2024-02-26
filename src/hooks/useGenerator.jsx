@@ -2,15 +2,11 @@ import {useState, useEffect} from "react";
 
 function useGenerator({dropdownState, flavors}) {
 
-    //const [flavors, setFlavors] = useState(flavorData);
-
     const [chosenPrompts, setChosenPrompts] = useState([]);
 
     function getPrompt(dropdownState, flavors) {
 
         let promptObj = {};
-        console.log('get prompt running..');
-        console.log(dropdownState.theme);
 
         //if user hasn't selected anything from the dropdowns, grab from all flavors
        
