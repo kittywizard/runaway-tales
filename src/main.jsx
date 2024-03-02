@@ -30,6 +30,7 @@ export default function Main() {
     //setting flavors from the database
         //this actually works!
     async function dataGrab() {
+        //replace prompts with specific id
         const { data: prompts, error } = await supabase
          .from('prompts')
          .select();
@@ -42,68 +43,9 @@ export default function Main() {
         
     }, []);
 
-    //const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavors);
-    const [chosenPrompts, setChosenPrompts] = useState([]);
+    //need to set up better structure for the flavor info coming in from the db
 
-
-    //move back
-    function getPrompt() {
-
-        let promptObj = {};
-
-        //if user hasn't selected anything from the dropdowns, grab from all flavors
-       
-        if(dropdownState.theme === "" && dropdownState.flavor === "") {
-            console.log(`logging all numbers.. ${flavors.length}`);
-            const allNumbers = generateNumbers(flavors);
-            promptObj = setPromptObj(allNumbers[0], allNumbers[1], dropdownState.flavors);
-
-        } 
-        else if(dropdownState.flavor !== "") {
-            const flavorPrompts = flavors.filter(flavor => flavor.flavor === dropdownState.flavor);
-            const flavNum = generateNumbers(flavorPrompts);
-            promptObj = setPromptObj(flavNum[0], flavNum[1], flavorPrompts);
-        }
-        else if(dropdownState.theme !== "") {
-            const themePrompts = flavors.filter(flavor => flavor.theme === dropdownState.theme);
-            const numbers = generateNumbers(themePrompts);
-            promptObj = setPromptObj(numbers[0], numbers[1], themePrompts);
-        }
-       
-        //set state
-        setChosenPrompts(prevState => {
-            return [
-                ...prevState,
-                promptObj
-            ]
-        });
-    }
-
-      //random number generator
-      function generateNumbers(flavorArray) {
-
-        let randomFlavorNum = Math.floor((Math.random() * flavorArray.length) + 0);
-        console.log(randomFlavorNum)
-
-        //change this - db set up differently than the array
-        let randomPromptNum = Math.floor((Math.random() * flavorArray[randomFlavorNum].prompt.length) + 0); 
-        console.log(randomPromptNum)
-
-
-        return [
-            randomFlavorNum,
-            randomPromptNum
-        ]
-    }
-
-    function setPromptObj(randomFlavor, randomPrompt, array) {
-        return {
-            prompt: array[randomFlavor].prompts[randomPrompt],
-            flavor: array[randomFlavor].flavor,
-            number: randomPrompt + 1,
-            promptType: array[randomFlavor].theme
-        }
-    }
+    const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavors);
 
     const {getTopping, newTopping} = useTopping();
 
@@ -126,6 +68,7 @@ export default function Main() {
     }
 
     //for the dropdowns
+    //still using the data not the db
     const themeSet = new Set(flavorData.map(flavor => flavor.theme));
     const flavorSet = flavorData.map(flavor => flavor.flavor);
     
@@ -141,6 +84,7 @@ export default function Main() {
                     labelName={"Select a theme (optional):"}
                     dataSet={themeSet}
                 />
+                
                 <Dropdown 
                     name="flavor"
                     labelName="Select a flavor (optional):"
