@@ -1,4 +1,3 @@
-import Button from "./Button";
 import { Link } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 
@@ -20,6 +19,9 @@ export default function Nav() {
         <ul className="hidden md:flex items-center justify-between">
             <li className='p-3 font-bold text-dark-green'>
                 <Link to="/dashboard">{username}</Link>
+            </li>
+            <li className='p-3 font-bold text-dark-green'>
+                <Link to="/">Home</Link>
             </li>
             <li className='p-3'>
                 <a className="cursor-pointer p-3 font-bold hover:text-gray-dark" onClick={handleLogout}>Logout</a>
