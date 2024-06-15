@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../AuthContext";
+import Intro from "../Intro";
 
 const Login = () => {
     const emailRef = useRef(null);
@@ -42,8 +43,14 @@ const Login = () => {
           </h1>
           <p className="text-gray">A Writing Prompt Generator</p>
         </div>
+
+        <Intro />
+
         <div className="p-6 mb-3 mx-auto container">
             <h3 className='font-bold text-2xl text-dark-green p-2 text-center'>Sign in</h3>
+            <p className="p-2 text-sm text-center">
+              Sign in or sign up to create an account to save your RaTs progress, track your goals and more!
+            </p>
             {loading ? 
             'Please wait..'
             :
