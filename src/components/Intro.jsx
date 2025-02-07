@@ -1,7 +1,7 @@
 export default function Intro() {
     return (
-        <div className="max-w-2xl flex">
-            <p className="p-2 text-sm text-center max-w-2xl">
+        <div className="max-w-3xl mx-auto justify-center">
+            <p className="p-2 text-sm text-center">
                 Runaway Tales is a prompt based writing/art challenge, originally hosted on livejournal, now hosted at  
                 <a href="http://wriye.proboards.com" 
                     className="font-bold text-dark-green hover:bg-gray-green-light hover:border-b-1 hover:border-b-black"

@@ -6,7 +6,6 @@ export default function Nav() {
    const {user, signOut} = useAuth();
    const username = user.user_metadata.username;
 
-
    const handleLogout = async (e) => {
     e.preventDefault();
     try {
