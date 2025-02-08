@@ -25,7 +25,7 @@ export default function Main() {
     const [displayTopping, setDisplayTopping] = useState(false);
     const [toggleTopping, setToggleTopping] = useState(true);
 
-    const [flavors, setFlavors] = useState(flavorData);
+    // const [flavors, setFlavors] = useState(flavorData);
     const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
 
     const {getTopping, newTopping} = useTopping();
@@ -43,7 +43,6 @@ export default function Main() {
     }, [promptMap]);
 
     function handleIconClick() {
-        //set state and hide this section! also change icon
         setToggleTopping(prevState => !prevState)
     }
 

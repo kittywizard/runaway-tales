@@ -1,36 +1,32 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import { flavorData } from "../data/flavors"; 
 
 
-function useGenerator(dropdownState) {
-    const [flavors, setFlavors] = useState([flavorData]);
+function useGenerator() {
     const [chosenPrompts, setChosenPrompts] = useState([]);
+    let flavors = flavorData;
 
-    function getPrompt(dropdownState, flavors) {
+    function getPrompt(dropdownState) {
         let promptObj = {};
-
-        //if user hasn't selected anything from the dropdowns, grab from all flavors
-        console.log(dropdownState.theme);
-        console.log(dropdownState.flavor);
+        const flavors = flavorData;
        
-        if(dropdownState.theme === "" && dropdownState.flavor === "") {
-            console.log(`logging all numbers.. ${flavors.length}`);
-            const allNumbers = generateNumbers(flavors);
-            promptObj = setPromptObj(allNumbers[0], allNumbers[1], dropdownState.flavors);
-        } 
-        //this seems to be catching all
-        else if(dropdownState.flavor !== "") {
+        if(dropdownState.theme !== "") {
             console.log("no flavor selected");
-            const flavorPrompts = flavors.filter(flavor => flavor.flavor === dropdownState.flavor);
-            const flavNum = generateNumbers(flavorPrompts);
-            promptObj = setPromptObj(flavNum[0], flavNum[1], flavorPrompts);
-        }
-        else if(dropdownState.theme !== "") {
-            console.log("no theme selected");
             const themePrompts = flavors.filter(flavor => flavor.theme === dropdownState.theme);
             const numbers = generateNumbers(themePrompts);
             promptObj = setPromptObj(numbers[0], numbers[1], themePrompts);
         }
+        else if(dropdownState.flavor !== "") {
+            console.log("no theme selected");
+            const flavorPrompts = flavors.filter(flavor => flavor.flavor === dropdownState.flavor);
+            const flavNum = generateNumbers(flavorPrompts);
+            promptObj = setPromptObj(flavNum[0], flavNum[1], flavorPrompts);
+        }
+        else {
+            console.log("logging all numbers..");
+            const allNumbers = generateNumbers(flavors);
+            promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);
+        } 
        
         //set state
         setChosenPrompts(prevState => {
@@ -41,12 +37,11 @@ function useGenerator(dropdownState) {
         });
     }
 
-
     //random number generator
     function generateNumbers(flavorArray) {
-
+        
         let randomFlavorNum = Math.floor((Math.random() * flavorArray.length) + 0);
-        let randomPromptNum = Math.floor((Math.random() * flavorArray[randomFlavorNum].prompt.length) + 0); 
+        let randomPromptNum = Math.floor((Math.random() * flavorArray[randomFlavorNum].prompts.length) + 0); 
 
         return [
             randomFlavorNum,
