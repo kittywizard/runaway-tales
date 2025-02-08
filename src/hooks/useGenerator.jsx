@@ -11,19 +11,16 @@ function useGenerator() {
         const flavors = flavorData;
        
         if(dropdownState.theme !== "") {
-            console.log("no flavor selected");
             const themePrompts = flavors.filter(flavor => flavor.theme === dropdownState.theme);
             const numbers = generateNumbers(themePrompts);
             promptObj = setPromptObj(numbers[0], numbers[1], themePrompts);
         }
         else if(dropdownState.flavor !== "") {
-            console.log("no theme selected");
             const flavorPrompts = flavors.filter(flavor => flavor.flavor === dropdownState.flavor);
             const flavNum = generateNumbers(flavorPrompts);
             promptObj = setPromptObj(flavNum[0], flavNum[1], flavorPrompts);
         }
         else {
-            console.log("logging all numbers..");
             const allNumbers = generateNumbers(flavors);
             promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);
         } 
