@@ -10,7 +10,7 @@ import Intro from "./components/Intro";
 import useGenerator from "./hooks/useGenerator";
 import useTopping from "./hooks/useTopping";
 
-import { flavorData } from "./data/flavors"; //change to use database at some point 
+import { flavorData } from "./data/flavors"; 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
@@ -25,30 +25,10 @@ export default function Main() {
     const [displayTopping, setDisplayTopping] = useState(false);
     const [toggleTopping, setToggleTopping] = useState(true);
 
-    const [flavors, setFlavors] = useState([]);
- 
-    //setting flavors from the database
-        //this actually works!
-    async function dataGrab() {
-        //replace prompts with specific id
-        const { data: prompts, error } = await supabase
-         .from('prompts')
-         .select();
-         setFlavors(prompts);
-     }
-
-    useEffect(() => {
-            dataGrab()
-            .catch(console.error); 
-        
-    }, []);
-
-    //need to set up better structure for the flavor info coming in from the db
-
-    const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavors);
+    const [flavors, setFlavors] = useState(flavorData);
+    const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
 
     const {getTopping, newTopping} = useTopping();
-
 
     const promptMap = chosenPrompts.map(prompt => (
         <Prompt 
@@ -68,14 +48,13 @@ export default function Main() {
     }
 
     //for the dropdowns
-    //still using the data not the db
     const themeSet = new Set(flavorData.map(flavor => flavor.theme));
     const flavorSet = flavorData.map(flavor => flavor.flavor);
     
     return (
         <>
         <main className="container mx-auto flex-col justify-center">
-            <Intro />
+            <Intro /> 
             <div className="container flex flex-row justify-between">  
                 <Dropdown 
                     name="theme"
@@ -97,7 +76,7 @@ export default function Main() {
             <section className="flex justify-center p-4">
                 <h2 className="m-2 p-2 font-bold text-2xl text-gray">Generate a Flavor?</h2>
                  <Button 
-                    handleClick={getPrompt}
+                    handleClick={() => {getPrompt(dropdownState)}}
                     buttonName={"Generate"}
                 />
             </section>
