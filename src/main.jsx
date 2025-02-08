@@ -37,11 +37,12 @@ export default function Main() {
         />
     ));
         
-    //need to check if promptMap gets updated and then display the topping stuff
+    //display prompt list
     useEffect(() => {
         promptMap.length > 0 && setDisplayTopping(true)
     }, [promptMap]);
 
+    // hide topping toggle
     function handleIconClick() {
         setToggleTopping(prevState => !prevState)
     }
