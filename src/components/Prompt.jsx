@@ -8,19 +8,33 @@ export default function Prompt(props){
     const {prompt, number, flavor, promptType} = props.data;
     const [toggleSaved, setToggleSaved] = useState(true);
     
-    //write function to handle button click
-    async function addToSaved(prompt) {
+    async function addToSaved(prompt, number) {
+        //prevent default
+
+        //error checking
+
         console.log(`Save this one ${[prompt]}`);
         setToggleSaved(prevState => !prevState);
 
         const { data: { user } } = await supabase.auth.getUser();
 
-        const { data: saved, error } = await supabase.from('saved')
-                                      .insert([
-                                        { id: 1, user_id: user.id, favorite: true, prompt_id: number },
-                                    ])
-                                      .select();        
+        const { data, error } = await supabase.from('saved')
+            .insert([{ id: 1, user_id: user.id, favorite: true, prompt_id: number }]).select();        
+
+        if(error){
+            console.log(error);
+        }
+
+        if(data){
+            console.log(data);
+        }
     }
+
+    // useEffect(() => {
+
+    //     addToSaved(prompt, number);
+
+    // }, []);
 
     // async function dataGrab() {
     //     //replace prompts with specific id
