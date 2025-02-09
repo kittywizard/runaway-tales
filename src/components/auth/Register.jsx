@@ -41,6 +41,18 @@ const Register = () => {
         setMsg(
           "Registration Successful. Check your email to confirm your account"
         );
+
+        // send info to public table, not sure which method to use or both
+        const { data: { user } } = await supabase.auth.getUser();
+        const user_id = user.id;
+
+        // const {user} = useAuth();
+        // const username = user.user_metadata.username;
+
+        //need to select one that has matching UUID
+        // const { data, error } = await supabase.from('profiles')
+        //     .insert([{ id: uuid, username: user.user_metadata.username}]).select();    
+
       }
     } catch (error) {
         console.log(error)
