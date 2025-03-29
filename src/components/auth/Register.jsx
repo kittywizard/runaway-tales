@@ -32,26 +32,17 @@ const Register = () => {
     try {
       setErrorMsg("");
       setLoading(true);
+
       const { data, error } = await register(
         emailRef.current.value,
         passwordRef.current.value,
         usernameRef.current.value
       );
+
       if (!error && data) {
         setMsg(
           "Registration Successful. Check your email to confirm your account"
         );
-        // send info to public table, not sure which method to use or both
-        const { data: { user } } = await supabase.auth.getUser();
-        const user_id = user.id;
-        console.log(user_id);
-        const username = user.user_metadata.username;
-
-        //need to select one that has matching UUID
-        const { data, error } = await supabase.from('profiles')
-            .update([{ id: user_id, username: username}])
-            .eq('id', user.auth.uuid) //maybe
-            .select();    
       }
     } catch (error) {
         console.log(error)
