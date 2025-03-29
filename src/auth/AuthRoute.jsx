@@ -1,6 +1,6 @@
 import { useAuth } from "./AuthContext";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import Header from "./components/Header";
+import Header from "../components/Header";
 
 const AuthRoute = () => {
   const { user } = useAuth();

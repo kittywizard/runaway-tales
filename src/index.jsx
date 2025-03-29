@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from "./AuthContext";
-import AuthRoute from './AuthRoute';
+import { AuthProvider } from "./auth/AuthContext";
+import AuthRoute from './auth/AuthRoute';
 
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useAuth } from "../../AuthContext";
+import { useAuth } from "../../auth/AuthContext";
 import { Link } from "react-router-dom";
 
 export default function Settings() {
