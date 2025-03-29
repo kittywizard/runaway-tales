@@ -1,4 +1,5 @@
 import { supabase } from "../supabaseClient";
+import { useAuth } from "../auth/AuthContext";
 import { useState, useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -13,20 +14,27 @@ export default function Prompt(props){
 
         //error checking
 
-        console.log(`Save this one ${[prompt]}`);
+        console.log(`Save this one: ${[prompt]}`);
         setToggleSaved(prevState => !prevState);
 
-        const { data: { user } } = await supabase.auth.getUser();
+        const { data: { user } } = await supabase.auth.getUser(); //getSession later?
+        const user_id = user.user_metadata.sub; 
+        const username = user.user_metadata.username;
 
-        const { data, error } = await supabase.from('saved')
-            .insert([{ id: 1, user_id: user.id, favorite: true, prompt_id: number }]).select();        
-
-        if(error){
-            console.log(error);
+        //check if username is set up first
+        const {data: profile, profileError} = await supabase.from('profiles').select('id', 'username').eq('id', user_id);
+    
+        if (profile[0].username == null) {
+            const {data: setUsernameError} = await supabase.from('profiles')
+                    .update({username: username})
+                    .eq('id', user_id)
         }
 
-        if(data){
-            console.log(data);
+        const { data, error } = await supabase.from('saved')
+            .insert([{ user_id: user_id, favorite: true, prompt_id: number }]).select();        
+
+        if(error){
+            console.log(`error: ${error}`);
         }
     }
 

@@ -5,6 +5,10 @@ export default function Dashboard() {
     const {user} = useAuth();
     const username = user.user_metadata.username;
 
+    const setupAccount = () => {
+        
+    }
+
     return (
         // make this grid instead
         <section className="container mx-auto flex flex-row justify-between">

@@ -9,25 +9,32 @@ const Login = () => {
     const passwordRef = useRef(null);
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
     const { login } = useAuth();
 
     
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       setErrorMsg("");
       setLoading(true);
+
       if (!passwordRef.current?.value || !emailRef.current?.value) {
         setErrorMsg("Please fill in the fields");
         return;
       }
+
       const {
         data: { user, session },
         error
       } = await login(emailRef.current.value, passwordRef.current.value);
+
       if (error) setErrorMsg(error.message);
+
       if (user && session) navigate("/");
+
     } catch (error) {
       setErrorMsg("Email or Password Incorrect");
     }
