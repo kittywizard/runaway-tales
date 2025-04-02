@@ -8,13 +8,15 @@ export default function Prompt(props){
 
     const {prompt, number, flavor, promptType} = props.data;
     const [toggleSaved, setToggleSaved] = useState(true);
+
+    console.log(number)
+
+    //this number needs to be pulled from the database - need the actual unique ID not whatever random shit this is pulling in (the number out of the bucket its in)
     
     async function addToSaved(prompt, number) {
-        //prevent default
-
         //error checking
 
-        console.log(`Save this one: ${[prompt]}`);
+        console.log(`Save this one: ${number}: ${[prompt]}`);
         setToggleSaved(prevState => !prevState);
 
         const { data: { user } } = await supabase.auth.getUser(); //getSession later?
