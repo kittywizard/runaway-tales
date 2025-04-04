@@ -1,10 +1,26 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { flavorData } from "../data/flavors"; 
+import { supabase } from "../supabaseClient";
 
-
-function useGenerator() {
+async function useGenerator() {
     const [chosenPrompts, setChosenPrompts] = useState([]);
-    let flavors = flavorData;
+    //let flavors = flavorData;
+    const [flavors, setFlavors] = useState({});
+
+    //pull flavors from database (hopefully only once!)
+    async function dataGrab() {
+        const {data: prompts, error} = await supabase.from('prompts')
+        .select('*')
+
+        if(error) console.log(error)
+
+        return prompts;
+    }
+    
+    useEffect(()=> {
+        //set this as state
+        setFlavors(dataGrab());
+    },[]);
 
     function getPrompt(dropdownState) {
         let promptObj = {};
