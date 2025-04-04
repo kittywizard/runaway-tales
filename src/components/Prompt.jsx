@@ -12,30 +12,43 @@ export default function Prompt(props){
     //this number needs to be pulled from the database - need the actual unique ID not whatever random shit this is pulling in (the number out of the bucket its in)
     
     async function addToSaved(prompt, number) {
-        //error checking
 
-        console.log(`Save this one: ${number}: ${[prompt]}`);
         setToggleSaved(prevState => !prevState);
 
         const { data: { user } } = await supabase.auth.getUser(); //getSession later?
         const user_id = user.user_metadata.sub; 
         const username = user.user_metadata.username;
 
-        //check if username is set up first
-        const {data: profile, profileError} = await supabase.from('profiles').select('id', 'username').eq('id', user_id);
+        console.log(prompt)
+
+        if (toggleSaved) {
+            //check if username is set up first
+            //this can probably go somewhere else later
+            const {data: profile, profileError} = await supabase.from('profiles').select('id', 'username').eq('id', user_id);
+        
+            if (profile[0].username == null) {
+                const {data: setUsernameError} = await supabase.from('profiles')
+                        .update({username: username})
+                        .eq('id', user_id)
+            }
+        
+            const { data, error } = await supabase.from('saved')
+                .insert([{ user_id: user_id, favorite: true, prompt_id: number }]).select();        
     
-        if (profile[0].username == null) {
-            const {data: setUsernameError} = await supabase.from('profiles')
-                    .update({username: username})
-                    .eq('id', user_id)
+            if(error){
+                console.log(`error: ${error}`);
+            }
+        }
+        else {
+            console.log("remove entry from .saved");
+            // const { data, error } = await supabase.from('saved')
+            // .delete().eq("prompt_id": "number");        
+
+            // if(error){
+            //     console.log(`error: ${error}`);
+            // }
         }
 
-        const { data, error } = await supabase.from('saved')
-            .insert([{ user_id: user_id, favorite: true, prompt_id: number }]).select();        
-
-        if(error){
-            console.log(`error: ${error}`);
-        }
     }
 
     return (
