@@ -2,10 +2,10 @@ import {useEffect, useState} from "react";
 import { flavorData } from "../data/flavors"; 
 import { supabase } from "../supabaseClient";
 
-async function useGenerator() {
+function useGenerator() {
     const [chosenPrompts, setChosenPrompts] = useState([]);
-    //let flavors = flavorData;
-    const [flavors, setFlavors] = useState({});
+    let flavors = flavorData;
+    const [flavorsDB, setFlavors] = useState({});
 
     //pull flavors from database (hopefully only once!)
     async function dataGrab() {
