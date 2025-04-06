@@ -30,18 +30,20 @@ export default function Main() {
     //pull flavors from database
     async function dataGrab() {
         const {data: prompts, error} = await supabase.from('prompts')
-        .select('*')
+        .select('*');
 
         if(error) console.log(error)
 
-        return prompts;
+        setFlavors(prompts);
     }
     
     useEffect(()=> {
-        setFlavors(dataGrab());
+        dataGrab();
     },[]);
 
     // const [flavors, setFlavors] = useState(flavorData);
+
+    //neeed to pass the flavor info to the generator hook
     const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
 
     const {getTopping, newTopping} = useTopping();
@@ -68,7 +70,7 @@ export default function Main() {
     const flavorSet = flavorData.map(flavor => flavor.flavor);
     
     return (
-        flavorsDB ? <Loading/> :
+        flavorsDB == {} ? <Loading/> :
         <>
         <main className="container mx-auto flex-col justify-center">
             <Intro /> 
