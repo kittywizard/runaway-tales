@@ -6,6 +6,7 @@ import Button from "./components/Button";
 import Prompt from "./components/Prompt";
 import Dropdown from "./components/form/Dropdown";
 import Intro from "./components/Intro";
+import Loading from "./components/Loading";
 
 import useGenerator from "./hooks/useGenerator";
 import useTopping from "./hooks/useTopping";
@@ -24,6 +25,21 @@ export default function Main() {
     });
     const [displayTopping, setDisplayTopping] = useState(false);
     const [toggleTopping, setToggleTopping] = useState(true);
+    const [flavorsDB, setFlavors] = useState({});
+
+    //pull flavors from database
+    async function dataGrab() {
+        const {data: prompts, error} = await supabase.from('prompts')
+        .select('*')
+
+        if(error) console.log(error)
+
+        return prompts;
+    }
+    
+    useEffect(()=> {
+        setFlavors(dataGrab());
+    },[]);
 
     // const [flavors, setFlavors] = useState(flavorData);
     const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
@@ -52,6 +68,7 @@ export default function Main() {
     const flavorSet = flavorData.map(flavor => flavor.flavor);
     
     return (
+        flavorsDB ? <Loading/> :
         <>
         <main className="container mx-auto flex-col justify-center">
             <Intro /> 
@@ -118,5 +135,6 @@ export default function Main() {
 
         </main>
         </>
+        
     )
 }

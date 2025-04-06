@@ -5,23 +5,11 @@ import { supabase } from "../supabaseClient";
 function useGenerator() {
     const [chosenPrompts, setChosenPrompts] = useState([]);
     let flavors = flavorData;
-    const [flavorsDB, setFlavors] = useState({});
 
-    //pull flavors from database (hopefully only once!)
-    async function dataGrab() {
-        const {data: prompts, error} = await supabase.from('prompts')
-        .select('*')
 
-        if(error) console.log(error)
-
-        return prompts;
-    }
-    
-    useEffect(()=> {
-        //set this as state
-        setFlavors(dataGrab());
-    },[]);
-
+    //need to change this so it's using the DB variable instead
+    //but needs to wait until useEffect is done first
+    //this runs when the GEnerate button is clicked
     function getPrompt(dropdownState) {
         let promptObj = {};
         const flavors = flavorData;
@@ -71,7 +59,7 @@ function useGenerator() {
         }
     }
 
-    return {getPrompt, chosenPrompts, setChosenPrompts, flavors}
+    return {getPrompt, chosenPrompts, setChosenPrompts}
 }
 
 export default useGenerator;

@@ -647,10 +647,6 @@ video {
   display: flex;
 }
 
-.table {
-  display: table;
-}
-
 .grid {
   display: grid;
 }
@@ -727,6 +723,10 @@ video {
 
 .bg-green {
   background-color: rgba(135,181,127,1);
+}
+
+.bg-gray-green-light\/30 {
+  background-color: rgba(228, 248, 229, 0.3);
 }
 
 .p-2 {
