@@ -2,14 +2,11 @@ import {useEffect, useState} from "react";
 import { flavorData } from "../data/flavors"; 
 import { supabase } from "../supabaseClient";
 
-function useGenerator() {
+function useGenerator(props) {
     const [chosenPrompts, setChosenPrompts] = useState([]);
-    let flavors = flavorData;
+    let flavors = props.flavorsDB;
 
 
-    //need to change this so it's using the DB variable instead
-    //but needs to wait until useEffect is done first
-    //this runs when the GEnerate button is clicked
     function getPrompt(dropdownState) {
         let promptObj = {};
         const flavors = flavorData;

@@ -44,7 +44,7 @@ export default function Main() {
     // const [flavors, setFlavors] = useState(flavorData);
 
     //neeed to pass the flavor info to the generator hook
-    const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
+    const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavorsDB);
 
     const {getTopping, newTopping} = useTopping();
 
