@@ -7,10 +7,11 @@ function useGenerator() {
     const [chosenPrompts, setChosenPrompts] = useState([]);
     //let flavors = props.flavorsDB;
     const flavors = useContext(FlavorContext);
+    console.log(flavors)
 
     function getPrompt(dropdownState) {
         let promptObj = {};
-        const flavors = flavorData;
+        //const flavors = flavorData;
        
         if(dropdownState.theme !== "") {
             const themePrompts = flavors.filter(flavor => flavor.theme === dropdownState.theme);

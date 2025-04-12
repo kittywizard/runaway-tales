@@ -19,6 +19,7 @@ import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { supabase } from "./supabaseClient";
 
 const FlavorContext = React.createContext();
+//this may have to move up to index?
 
 export default function Main() {
     const [dropdownState, setDropdownState] = useState({
@@ -47,7 +48,7 @@ export default function Main() {
 
     //need to pass the flavor info to the generator hook
     // create context for this 
-    const {getPrompt, chosenPrompts} = useGenerator(dropdownState, flavorsDB);
+    const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
 
     const {getTopping, newTopping} = useTopping();
 
@@ -74,73 +75,73 @@ export default function Main() {
     
     return (
         <FlavorContext.Provider value={flavorsDB}>
-            flavorsDB == {} ? <Loading/> :
+            { flavorsDB == {} ? <Loading/> :
             <>
-            <main className="container mx-auto flex-col justify-center">
-                <Intro /> 
-                <div className="container flex flex-row justify-between">  
-                    <Dropdown 
-                        name="theme"
-                        dropdownState={dropdownState}
-                        setDropdownState={setDropdownState}
-                        labelName={"Select a theme (optional):"}
-                        dataSet={themeSet}
-                    />
-                    
-                    <Dropdown 
-                        name="flavor"
-                        labelName="Select a flavor (optional):"
-                        dropdownState={dropdownState}
-                        setDropdownState={setDropdownState}
-                        dataSet={flavorSet}
-                    />
-                </div>
+                <main className="container mx-auto flex-col justify-center">
+                    <Intro /> 
+                    <div className="container flex flex-row justify-between">  
+                        <Dropdown 
+                            name="theme"
+                            dropdownState={dropdownState}
+                            setDropdownState={setDropdownState}
+                            labelName={"Select a theme (optional):"}
+                            dataSet={themeSet}
+                        />
+                        
+                        <Dropdown 
+                            name="flavor"
+                            labelName="Select a flavor (optional):"
+                            dropdownState={dropdownState}
+                            setDropdownState={setDropdownState}
+                            dataSet={flavorSet}
+                        />
+                    </div>
 
-                <section className="flex justify-center p-4">
-                    <h2 className="m-2 p-2 font-bold text-2xl text-gray">Generate a Flavor?</h2>
-                    <Button 
-                        handleClick={() => {getPrompt(dropdownState)}}
-                        buttonName={"Generate"}
-                    />
-                </section>
-
-                {displayTopping &&
-                    <section className="max-w-2xl m-auto bg-gray-green-light p-4 my-4 shadow-sm shadow-gray-dark/30">
-                        <div className="text-right">
-                            <FontAwesomeIcon 
-                                icon={toggleTopping ? faAngleDown : faAngleLeft}
-                                onClick={handleIconClick}
-                                className="text-3xl text-dark-green hover:text-gray-dark cursor-pointer"
-                            />
-                        </div>
-
-                        {toggleTopping &&
-                            <section className="my-2">
-                                <div className="flex justify-between">
-                                    <div className="flex-col mx-4">
-                                        <h3 className="mb-1 font-bold text-lg">
-                                            Need a topping to go with that flavor?
-                                        </h3>
-                                        <p className="text-xs">Toppings are optional add-ons that can completely change what (or who!) you're writing about.</p>
-                                    </div>
-                                    <Button 
-                                        handleClick={getTopping}
-                                        buttonName={"Get Topping"}
-                                    />
-                                </div>
-
-                                {newTopping}
-                            </section>
-                        }
+                    <section className="flex justify-center p-4">
+                        <h2 className="m-2 p-2 font-bold text-2xl text-gray">Generate a Flavor?</h2>
+                        <Button 
+                            handleClick={() => {getPrompt(dropdownState)}}
+                            buttonName={"Generate"}
+                        />
                     </section>
-                }
 
-                <section className="flex justify-between flex-wrap">
-                    {promptMap}
-                </section>
+                    {displayTopping &&
+                        <section className="max-w-2xl m-auto bg-gray-green-light p-4 my-4 shadow-sm shadow-gray-dark/30">
+                            <div className="text-right">
+                                <FontAwesomeIcon 
+                                    icon={toggleTopping ? faAngleDown : faAngleLeft}
+                                    onClick={handleIconClick}
+                                    className="text-3xl text-dark-green hover:text-gray-dark cursor-pointer"
+                                />
+                            </div>
 
-            </main>
-            </>
+                            {toggleTopping &&
+                                <section className="my-2">
+                                    <div className="flex justify-between">
+                                        <div className="flex-col mx-4">
+                                            <h3 className="mb-1 font-bold text-lg">
+                                                Need a topping to go with that flavor?
+                                            </h3>
+                                            <p className="text-xs">Toppings are optional add-ons that can completely change what (or who!) you're writing about.</p>
+                                        </div>
+                                        <Button 
+                                            handleClick={getTopping}
+                                            buttonName={"Get Topping"}
+                                        />
+                                    </div>
+
+                                    {newTopping}
+                                </section>
+                            }
+                        </section>
+                    }
+
+                    <section className="flex justify-between flex-wrap">
+                        {promptMap}
+                    </section>
+
+                </main>
+            </>}
         </FlavorContext.Provider>
         
     )
