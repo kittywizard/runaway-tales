@@ -4,8 +4,7 @@ import { supabase } from "../supabaseClient";
 
 function useGenerator(props) {
     const [chosenPrompts, setChosenPrompts] = useState([]);
-    let flavors = props.flavorsDB;
-
+    //let flavors = props.flavorsDB;
 
     function getPrompt(dropdownState) {
         let promptObj = {};
