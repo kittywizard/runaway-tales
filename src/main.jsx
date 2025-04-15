@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext} from "react";
 import React from "react"; //go away typescript
 import {nanoid } from "nanoid";
 
+import { ContextProvider, FlavorContext } from "./context";
 import Button from "./components/Button";
 import Prompt from "./components/Prompt";
 import Dropdown from "./components/form/Dropdown";
@@ -18,8 +19,6 @@ import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { supabase } from "./supabaseClient";
 
-const FlavorContext = React.createContext();
-//this may have to move up to index?
 
 export default function Main() {
     const [dropdownState, setDropdownState] = useState({
@@ -28,21 +27,7 @@ export default function Main() {
     });
     const [displayTopping, setDisplayTopping] = useState(false);
     const [toggleTopping, setToggleTopping] = useState(true);
-    const [flavorsDB, setFlavors] = useState({});
-
-    //pull flavors from database
-    async function dataGrab() {
-        const {data: prompts, error} = await supabase.from('prompts')
-        .select('*');
-
-        if(error) console.log(error)
-
-        setFlavors(prompts);
-    }
-    
-    useEffect(()=> {
-        dataGrab();
-    },[]);
+    const {flavorsDB} = useContext(FlavorContext);
 
     // const [flavors, setFlavors] = useState(flavorData);
 
@@ -74,7 +59,7 @@ export default function Main() {
     const flavorSet = flavorData.map(flavor => flavor.flavor);
     
     return (
-        <FlavorContext.Provider value={flavorsDB}>
+        <ContextProvider>
             { flavorsDB == {} ? <Loading/> :
             <>
                 <main className="container mx-auto flex-col justify-center">
@@ -142,9 +127,7 @@ export default function Main() {
 
                 </main>
             </>}
-        </FlavorContext.Provider>
+        </ContextProvider>
         
     )
 }
-
-export {FlavorContext}

@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import { flavorData } from "../data/flavors"; 
 import { supabase } from "../supabaseClient";
-import { FlavorContext } from "../Main";
+import { FlavorContext } from "../context";
 
 function useGenerator() {
     const [chosenPrompts, setChosenPrompts] = useState([]);
