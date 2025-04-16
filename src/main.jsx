@@ -2,7 +2,7 @@ import { useEffect, useState, createContext, useContext} from "react";
 import React from "react"; //go away typescript
 import {nanoid } from "nanoid";
 
-import { ContextProvider, FlavorContext } from "./context";
+import { FlavorContext } from "./context";
 import Button from "./components/Button";
 import Prompt from "./components/Prompt";
 import Dropdown from "./components/form/Dropdown";
@@ -16,9 +16,6 @@ import { flavorData } from "./data/flavors";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-
-import { supabase } from "./supabaseClient";
-
 
 export default function Main() {
     const [dropdownState, setDropdownState] = useState({
@@ -59,8 +56,7 @@ export default function Main() {
     const flavorSet = flavorData.map(flavor => flavor.flavor);
     
     return (
-        <ContextProvider>
-            { flavorsDB == {} ? <Loading/> :
+            // { flavorsDB == {} ? <Loading/> :
             <>
                 <main className="container mx-auto flex-col justify-center">
                     <Intro /> 
@@ -124,10 +120,8 @@ export default function Main() {
                     <section className="flex justify-between flex-wrap">
                         {promptMap}
                     </section>
-
                 </main>
-            </>}
-        </ContextProvider>
-        
+            </>
+        // }
     )
 }

@@ -4,7 +4,6 @@ const FlavorContext = createContext();
 
 function ContextProvider({children}){
 
-    function flavorSetup() {
         const [flavorsDB, setFlavors] = useState({});
         
            //pull flavors from database
@@ -20,7 +19,7 @@ function ContextProvider({children}){
            useEffect(()=> {
                dataGrab();
            },[]);
-    }
+    
 
     return (
         <Context.Provider value={{flavorsDB}}>

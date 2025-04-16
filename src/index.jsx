@@ -10,12 +10,14 @@ import Dashboard from './components/Dashboard';
 import Settings from './components/auth/Settings';
 import PasswordReset from "./components/auth/PasswordReset";
 import Main from "./Main";
+import { ContextProvider } from './context';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <AuthProvider>
+    <ContextProvider>
           <Routes>
             <Route element={<AuthRoute />}>
               <Route path="/" element={<Main/>}/>
@@ -27,6 +29,7 @@ root.render(
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Register/>}/>
           </Routes>
+        </ContextProvider>
     </AuthProvider>
   </BrowserRouter>
 );
