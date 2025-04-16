@@ -1,6 +1,7 @@
 import { useEffect, useState, createContext} from "react";
+import { supabase } from "./supabaseClient";
 
-const FlavorContext = createContext();
+const Context = createContext();
 
 function ContextProvider({children}){
 
@@ -28,6 +29,6 @@ function ContextProvider({children}){
     )
 }
 
-export {FlavorContext, ContextProvider} 
+export {Context, ContextProvider} 
 
 

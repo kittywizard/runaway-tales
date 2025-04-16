@@ -1,12 +1,12 @@
 import {useContext, useEffect, useState} from "react";
 import { flavorData } from "../data/flavors"; 
 import { supabase } from "../supabaseClient";
-import { FlavorContext } from "../context";
+import { Context } from "../context";
 
 function useGenerator() {
     const [chosenPrompts, setChosenPrompts] = useState([]);
     //let flavors = props.flavorsDB;
-    const flavors = useContext(FlavorContext);
+    const flavors = useContext(Context);
     console.log(flavors)
 
     function getPrompt(dropdownState) {

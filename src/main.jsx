@@ -2,7 +2,7 @@ import { useEffect, useState, createContext, useContext} from "react";
 import React from "react"; //go away typescript
 import {nanoid } from "nanoid";
 
-import { FlavorContext } from "./context";
+import { Context } from "./context";
 import Button from "./components/Button";
 import Prompt from "./components/Prompt";
 import Dropdown from "./components/form/Dropdown";
@@ -24,7 +24,7 @@ export default function Main() {
     });
     const [displayTopping, setDisplayTopping] = useState(false);
     const [toggleTopping, setToggleTopping] = useState(true);
-    const {flavorsDB} = useContext(FlavorContext);
+    const {flavorsDB} = useContext(Context);
 
     // const [flavors, setFlavors] = useState(flavorData);
 
