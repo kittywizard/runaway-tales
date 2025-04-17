@@ -9,20 +9,21 @@ function useGenerator() {
     function getPrompt(dropdownState, flavors) {
         let promptObj = {};
 
+        //these changes break the drop down yay
         if(dropdownState.theme !== "") {
             console.log("yes theme")
-            const themePrompts = flavors.filter(flavor => flavor.theme === dropdownState.theme);
+            const themePrompts = flavors.filter(flavor => flavor.flavor_desc === dropdownState.theme);
             const numbers = generateNumbers(themePrompts);
             promptObj = setPromptObj(numbers[0], numbers[1], themePrompts);
         }
         else if(dropdownState.flavor !== "") {
             console.log("yes flavor")
-            const flavorPrompts = flavors.filter(flavor => flavor.flavor === dropdownState.flavor);
+            const flavorPrompts = flavors.filter(flavor => flavor.flavor_name === dropdownState.flavor);
             const flavNum = generateNumbers(flavorPrompts);
             promptObj = setPromptObj(flavNum[0], flavNum[1], flavorPrompts);
         }
         else {
-            console.log(flavors)
+            console.log("neither")
             const allNumbers = generateNumbers(flavors);
             promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);
         } 
@@ -42,8 +43,11 @@ function useGenerator() {
         let randomFlavorNum = Math.floor((Math.random() * flavorArray.length) + 0);
         console.log(randomFlavorNum)
         //data is different now, needs different setup
-        
-        //let randomPromptNum = Math.floor((Math.random() * flavorArray[randomFlavorNum].prompts.length) + 0); 
+        // array of 1000 objects ( or less)
+        // just need to grab array at position random number
+
+        let randomPromptNum = flavorArray[randomFlavorNum]; 
+        console.log(randomPromptNum)
 
         return [
             randomFlavorNum,
