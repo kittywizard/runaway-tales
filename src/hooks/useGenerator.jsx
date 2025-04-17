@@ -5,25 +5,24 @@ import { Context } from "../context";
 
 function useGenerator() {
     const [chosenPrompts, setChosenPrompts] = useState([]);
-    //let flavors = props.flavorsDB;
-    const flavors = useContext(Context);
-    console.log(flavors)
 
-    function getPrompt(dropdownState) {
+    function getPrompt(dropdownState, flavors) {
         let promptObj = {};
-        //const flavors = flavorData;
-       
+
         if(dropdownState.theme !== "") {
+            console.log("yes theme")
             const themePrompts = flavors.filter(flavor => flavor.theme === dropdownState.theme);
             const numbers = generateNumbers(themePrompts);
             promptObj = setPromptObj(numbers[0], numbers[1], themePrompts);
         }
         else if(dropdownState.flavor !== "") {
+            console.log("yes flavor")
             const flavorPrompts = flavors.filter(flavor => flavor.flavor === dropdownState.flavor);
             const flavNum = generateNumbers(flavorPrompts);
             promptObj = setPromptObj(flavNum[0], flavNum[1], flavorPrompts);
         }
         else {
+            console.log(flavors)
             const allNumbers = generateNumbers(flavors);
             promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);
         } 
@@ -41,7 +40,10 @@ function useGenerator() {
     function generateNumbers(flavorArray) {
         
         let randomFlavorNum = Math.floor((Math.random() * flavorArray.length) + 0);
-        let randomPromptNum = Math.floor((Math.random() * flavorArray[randomFlavorNum].prompts.length) + 0); 
+        console.log(randomFlavorNum)
+        //data is different now, needs different setup
+        
+        //let randomPromptNum = Math.floor((Math.random() * flavorArray[randomFlavorNum].prompts.length) + 0); 
 
         return [
             randomFlavorNum,

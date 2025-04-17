@@ -81,7 +81,7 @@ export default function Main() {
                     <section className="flex justify-center p-4">
                         <h2 className="m-2 p-2 font-bold text-2xl text-gray">Generate a Flavor?</h2>
                         <Button 
-                            handleClick={() => {getPrompt(dropdownState)}}
+                            handleClick={() => {getPrompt(dropdownState, flavorsDB)}}
                             buttonName={"Generate"}
                         />
                     </section>
