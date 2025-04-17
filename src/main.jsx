@@ -60,7 +60,7 @@ export default function Main() {
             <>
                 <main className="container mx-auto flex-col justify-center">
                     <Intro /> 
-                    <div className="container flex flex-row justify-between">  
+                    <div className="container flex flex-row justify-between max-w-3xl mx-auto">  
                         <Dropdown 
                             name="theme"
                             dropdownState={dropdownState}

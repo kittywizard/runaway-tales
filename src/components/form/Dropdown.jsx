@@ -11,11 +11,11 @@ export default function Dropdown(props){
 
     return (
        <div className="container text-center p-4">
-           <label htmlFor={props.name}>
+           <label htmlFor={props.name} className="font-bold">
                {props.labelName}
            </label>
            <select name={props.name} 
-                    className="p-2 m-2 bg-gray-green-light rounded-md"
+                    className="p-2 m-2 bg-gray-green-light rounded-md border border-dark-green"
                     onChange={handleChange}
                     value={props.name == "theme" ? props.dropdownState.theme : props.dropdownState.flavor}
             >
