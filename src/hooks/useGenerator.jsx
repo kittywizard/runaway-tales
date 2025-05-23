@@ -25,7 +25,8 @@ function useGenerator() {
         else {
             console.log("neither")
             const allNumbers = generateNumbers(flavors);
-            promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);
+            //promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);
+            promptObj = allNumbers[1]
         } 
        
         //set state
@@ -41,13 +42,8 @@ function useGenerator() {
     function generateNumbers(flavorArray) {
         
         let randomFlavorNum = Math.floor((Math.random() * flavorArray.length) + 0);
-        console.log(randomFlavorNum)
-        //data is different now, needs different setup
-        // array of 1000 objects ( or less)
-        // just need to grab array at position random number
 
         let randomPromptNum = flavorArray[randomFlavorNum]; 
-        console.log(randomPromptNum)
 
         return [
             randomFlavorNum,
@@ -56,11 +52,18 @@ function useGenerator() {
     }
 
     function setPromptObj(randomFlavor, randomPrompt, array) {
+        // //randomFlavor is number
+        // console.log(array[randomFlavor].flavor);
+        // //array is full array of stuff (why?)
+        // return {
+        //     prompt: array[randomFlavor].prompts[randomPrompt],
+        //     flavor: array[randomFlavor].flavor,
+        //     number: randomPrompt + 1,
+        //     promptType: array[randomFlavor].theme
+        // }
+
         return {
-            prompt: array[randomFlavor].prompts[randomPrompt],
-            flavor: array[randomFlavor].flavor,
-            number: randomPrompt + 1,
-            promptType: array[randomFlavor].theme
+
         }
     }
 
