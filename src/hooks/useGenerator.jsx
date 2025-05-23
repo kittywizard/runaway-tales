@@ -9,23 +9,20 @@ function useGenerator() {
     function getPrompt(dropdownState, flavors) {
         let promptObj = {};
 
-        //these changes break the drop down yay
+        //THEME IS MISSING BECAUSE I AM AN IDIOT
         if(dropdownState.theme !== "") {
-            console.log("yes theme")
             const themePrompts = flavors.filter(flavor => flavor.flavor_desc === dropdownState.theme);
             const numbers = generateNumbers(themePrompts);
-            promptObj = setPromptObj(numbers[0], numbers[1], themePrompts);
+            //promptObj = setPromptObj(numbers[0], numbers[1], themePrompts);
+            promptObj = numbers[1];
         }
         else if(dropdownState.flavor !== "") {
-            console.log("yes flavor")
             const flavorPrompts = flavors.filter(flavor => flavor.flavor_name === dropdownState.flavor);
             const flavNum = generateNumbers(flavorPrompts);
-            promptObj = setPromptObj(flavNum[0], flavNum[1], flavorPrompts);
+            promptObj = flavNum[1];
         }
         else {
-            console.log("neither")
             const allNumbers = generateNumbers(flavors);
-            //promptObj = setPromptObj(allNumbers[0], allNumbers[1], flavors);
             promptObj = allNumbers[1]
         } 
        
@@ -42,7 +39,6 @@ function useGenerator() {
     function generateNumbers(flavorArray) {
         
         let randomFlavorNum = Math.floor((Math.random() * flavorArray.length) + 0);
-
         let randomPromptNum = flavorArray[randomFlavorNum]; 
 
         return [
