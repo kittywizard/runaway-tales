@@ -9,6 +9,7 @@ import Register from './components/auth/Register';
 import Dashboard from './components/Dashboard';
 import Settings from './components/auth/Settings';
 import PasswordReset from "./components/auth/PasswordReset";
+import SavedPrompts from './components/SavedPrompts';
 import Main from "./Main";
 import { ContextProvider } from './context';
 
@@ -25,6 +26,7 @@ root.render(
                 <Route path="/dashboard/settings" element={<Settings />}/>
                 <Route path="/dashboard/settings/update-password" element={<PasswordReset/>} />
               </Route>
+                <Route path="/saved" element={<SavedPrompts/>} />
             </Route>
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Register/>}/>

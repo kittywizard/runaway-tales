@@ -1,5 +1,7 @@
 import { supabase } from "../supabaseClient";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 
 export default function Intro() {
     const [getSession, setGetSession] = useState(false);
@@ -13,7 +15,12 @@ export default function Intro() {
     return (
         <div className="max-w-3xl mx-auto justify-center">
         {getSession ?
-            <p>logged in</p>
+        <>
+            <h2 className="p-2 text-lg font-bold text-center">Welcome</h2>
+            <p className="p-2 text-sm text-center">
+                 <Link to="/saved" className='p-3 font-bold text-dark-green'>Saved</Link>
+            </p>
+        </>
         :
             <p className="p-2 text-sm text-center">
                 Runaway Tales is a prompt based writing/art challenge, originally hosted on livejournal, now hosted at  
