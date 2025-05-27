@@ -4,7 +4,7 @@ import {nanoid } from "nanoid";
 
 import { Context } from "./context";
 import Button from "./components/Button";
-import Prompt from "./components/Prompt";
+import Prompt from "./components/prompts/Prompt";
 import Dropdown from "./components/form/Dropdown";
 import Intro from "./components/Intro";
 import Loading from "./components/Loading";
@@ -26,10 +26,6 @@ export default function Main() {
     const [toggleTopping, setToggleTopping] = useState(true);
     const {flavorsDB} = useContext(Context);
 
-    // const [flavors, setFlavors] = useState(flavorData);
-
-    //need to pass the flavor info to the generator hook
-    // create context for this 
     const {getPrompt, chosenPrompts} = useGenerator(dropdownState);
 
     const {getTopping, newTopping} = useTopping();

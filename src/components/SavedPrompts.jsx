@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { supabase } from "../supabaseClient";
 import { useAuth } from "../auth/AuthContext";
 import { Context } from "../context";
-import  Prompt  from "./Prompt";
+import  Prompt  from "./prompts/Prompt";
 import {nanoid } from "nanoid";
 
 export default function SavedPrompts() {
@@ -57,9 +57,9 @@ export default function SavedPrompts() {
                     savedPrompts == {} ? <>
                         Find some prompts!
                     </> :
-                        <>
+                        <div className="flex justify-between flex-wrap">
                             {promptMap}
-                        </>
+                        </div>
                 }
                 </div>
         </main>
