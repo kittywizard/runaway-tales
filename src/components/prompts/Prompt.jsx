@@ -21,6 +21,8 @@ export default function Prompt(props){
 
         if (toggleSaved) {
 
+            // this is checking profile data against authenticated user data to set a username properly. 
+            // should probably go somewhere else
             const {data: profile, profileError} = await supabase.from('profiles').select('id', 'username').eq('id', user_id);
         
             if (profile[0].username == null) {
@@ -31,7 +33,7 @@ export default function Prompt(props){
 
             // check if it already exists with this user_id attached
                 //db has a lot of duplicates
-            const { checkSaved, errorCheckSaved } = await supabase.from('saved').select('user_id', user_id);
+            const { checkSaved, errorCheckSaved } = await supabase.from('saved').select('user_id', 'prompt_id').eq('id', user_id, 'prompt_id'. number);
             if (checkSaved) {
 
                 const { data, error } = await supabase.from('saved')
