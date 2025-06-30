@@ -2,7 +2,7 @@ import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../auth/AuthContext";
 import { useState, useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faPlus, faHeartCirclePlus, faHeartCircleMinus } from '@fortawesome/free-solid-svg-icons';
 import PromptDisplay from "./PromptDisplay";
 
 export default function Prompt(props){ 
@@ -10,7 +10,6 @@ export default function Prompt(props){
     const {prompt, id, flavor_name, flavor_desc} = props.data;
     const [toggleSaved, setToggleSaved] = useState(true);
 
-    
     async function addToSaved(prompt, number) {
 
         setToggleSaved(prevState => !prevState);
@@ -60,6 +59,8 @@ export default function Prompt(props){
 
     //TO DO:
         // add or remove the plus icon, should only be a remove icon on saved status
+            // using the heart plus icon instead of just 'plus'
+            // want to have the check show up for a minute, then swap to heart minus
         // display as a heart when already saved? plus the delete icon? 
         // a way to determine "size" main page vs. saved and pass that down to the display prompt component
 
@@ -69,7 +70,7 @@ export default function Prompt(props){
             <p className="text-xs text-gray font-bold">{flavor_name}</p>
             <p className="text-dark-gray text-lg py-2">{id}. {prompt}</p>
             <FontAwesomeIcon 
-                icon={toggleSaved ? faPlus : faCheck}
+                icon={toggleSaved ? faHeartCirclePlus : faCheck}
                 onClick={() => addToSaved(prompt, id)}
                 className="text-3xl text-dark-green hover:text-gray-dark cursor-pointer"
             />
